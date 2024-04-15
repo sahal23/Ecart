@@ -1,0 +1,32 @@
+{% load static %}
+{% load get_status %}
+
+
+
+
+<div class="small-container cart-page">
+    {% if orders %}
+    <P class="title">order details</P>
+    <table>
+        <tbody><tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total Price</th>
+            <th>Status</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.created_at }}</td>
+            <td>{{ order.total_price }}</td>
+            <td>{% get_status order.order_status %}</td>
+        </tr>
+        {% endfor %}
+    </tbody></table>
+    {% else %}
+    <P class="title">No orders</P>
+    <div class="col-2">
+        <img src="{% static 'images/image1.png' %}">
+    </div>
+    {% endif %}
+</div>
